@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 ContactModel contactModelFromJson(String str) =>
     ContactModel.fromJson(json.decode(str));
 
@@ -18,7 +20,7 @@ class ContactModel {
   String name;
   String number;
 
-  factory ContactModel.fromJson(Map<String, dynamic> json) => ContactModel(
+  factory ContactModel.fromJson(DocumentSnapshot json) => ContactModel(
         name: json["name"],
         number: json["number"],
       );

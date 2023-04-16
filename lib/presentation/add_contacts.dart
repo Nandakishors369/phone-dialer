@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +13,8 @@ class AddContactScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showBottomSheet(
+            backgroundColor:
+                Theme.of(context).colorScheme.background.withOpacity(0.6),
             context: context,
             builder: (context) {
               return Container(
@@ -26,28 +28,31 @@ class AddContactScreen extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text("Add Contact"),
-                      TextFormField(
-                        decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Theme.of(context).highlightColor,
-                                    width: 3))),
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Theme.of(context).highlightColor,
-                                    width: 3))),
-                      ),
-                      ElevatedButton(
-                          onPressed: () {}, child: Text("Add To Contacts"))
-                    ],
+                  child: Form(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text("Add Contact"),
+                        TextFormField(
+                          decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).highlightColor,
+                                      width: 3))),
+                        ),
+                      
+                        TextFormField(
+                          decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).highlightColor,
+                                      width: 3))),
+                        ),
+                        ElevatedButton(
+                            onPressed: () {}, child: Text("Add To Contacts"))
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -79,3 +84,4 @@ class AddContactScreen extends StatelessWidget {
     );
   }
 }
+ */
