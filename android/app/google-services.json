@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "171041305633",
+    "project_id": "phone-dialer-dfe35",
+    "storage_bucket": "phone-dialer-dfe35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:171041305633:android:c8f4d2523c674de51f5f60",
+        "android_client_info": {
+          "package_name": "com.example.phone_dialer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "171041305633-q70gl8n3a3doj692edb1u408stk9k147.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.phone_dialer",
+            "certificate_hash": "d5fdc9b531f8e3a7b7d82239e7951a718a393b45"
+          }
+        },
+        {
+          "client_id": "171041305633-gqcajcoqamhd5880mk09fo6stq15e4ic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPyWMtqnwKQRAHotwhdFzS0o0Q8Vj_yOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "171041305633-gqcajcoqamhd5880mk09fo6stq15e4ic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
