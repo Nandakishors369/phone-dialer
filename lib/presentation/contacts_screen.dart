@@ -85,7 +85,7 @@ class ContactScreen extends StatelessWidget {
                           radius: 20,
                         ),
                         title: Text("name"),
-                        subtitle: Text("number"),
+                        subtitle: Text("mobilee"),
                         trailing: IconButton(
                             onPressed: () {},
                             icon: const Icon(Icons.more_vert)),
