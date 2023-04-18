@@ -3,8 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:phone_dialer/presentation/search_screen.dart';
 import 'package:phone_dialer/presentation/widgets/showDialog.dart';
 import 'package:phone_dialer/repositories/contact_repository.dart';
+import 'package:phone_dialer/repositories/recent_repository.dart';
 import 'package:phone_dialer/utils/sizes.dart';
 
 class ContactScreen extends StatelessWidget {
@@ -38,13 +40,18 @@ class ContactScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
                           "Contacts",
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.w600),
                         ),
-                        SizedBox.shrink()
+                        GestureDetector(
+                            onTap: () {
+                              showSearch(
+                                  context: context, delegate: SearchContact());
+                            },
+                            child: Icon(Icons.search))
                       ],
                     ),
                   ),
@@ -92,15 +99,13 @@ class ContactScreen extends StatelessWidget {
                                           await FlutterPhoneDirectCaller
                                               .callNumber(
                                                   snapshot.data![index].number);
-                                          Contact.editContact(
-                                            name: snapshot.data![index].name,
-                                            number:
-                                                snapshot.data![index].number,
-                                            docId: snapshot.data![index].did
-                                                .toString(),
-                                            recent:
-                                                snapshot.data![index].recent++,
-                                          );
+
+                                          Recent.addRecent(
+                                              name: snapshot.data![index].name,
+                                              number:
+                                                  snapshot.data![index].number,
+                                              uid: snapshot.data![index].did
+                                                  .toString());
                                         } catch (e) {
                                           // handle the error
                                           log(e.toString());
@@ -143,6 +148,12 @@ class ContactScreen extends StatelessWidget {
                                                       await Contact
                                                           .deleteContact(
                                                               docId: snapshot
+                                                                  .data![index]
+                                                                  .did
+                                                                  .toString());
+                                                      Recent
+                                                          .deleteRecentwithContacts(
+                                                              uid: snapshot
                                                                   .data![index]
                                                                   .did
                                                                   .toString());

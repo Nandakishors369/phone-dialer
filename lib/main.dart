@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
                 useMaterial3: true,
                 colorSchemeSeed: Colors.blue,
                 brightness: Brightness.dark),
-            home: const ContactScreen(),
+            home: const CustomNavigationBar(),
           );
         });
   }

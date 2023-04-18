@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phone_dialer/repositories/contact_repository.dart';
+import 'package:phone_dialer/repositories/recent_repository.dart';
 import 'package:phone_dialer/utils/sizes.dart';
 
 Future<dynamic> EditContactBottomSheet(
@@ -105,6 +106,11 @@ Future<dynamic> EditContactBottomSheet(
                             number: phoneEditController.text,
                             docId: docId,
                             recent: recent);
+                        Recent.editContact(
+                            name: nameEditController.text,
+                            number: phoneEditController.text,
+                            uid: docId);
+                        Navigator.pop(context);
                         nameEditController.clear();
                         phoneEditController.clear();
                       } else {
@@ -220,6 +226,7 @@ Future<dynamic> AddContactBottomSheet(
                         contact.addContacts(
                             name: nameController.text,
                             number: phoneController.text);
+                        Navigator.pop(context);
                         nameController.clear();
                         phoneController.clear();
                       } else {
