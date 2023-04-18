@@ -1,17 +1,11 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:phone_dialer/models/contact_model.dart';
 import 'package:phone_dialer/models/recent_model.dart';
-import 'package:phone_dialer/repositories/contact_repository.dart';
 import 'package:phone_dialer/repositories/recent_repository.dart';
 import 'package:phone_dialer/utils/sizes.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class RecentScreen extends StatelessWidget {
   const RecentScreen({super.key});
@@ -47,15 +41,22 @@ class RecentScreen extends StatelessWidget {
                       return const CircularProgressIndicator();
                     } else if (snapshot.hasData) {
                       if (snapshot.data!.isEmpty) {
-                        return const Text(
-                          "Please Add Contacts",
-                          style: TextStyle(color: Colors.white),
+                        return Column(
+                          children: [
+                            SizedBox(
+                              height: 300.h,
+                            ),
+                            const Text(
+                              "Please make a call to see recents",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
                         );
                       } else {
                         List<RecentModel> data = [];
-                        snapshot.data!.reversed.forEach((element) {
+                        for (var element in snapshot.data!.reversed) {
                           data.add(element);
-                        });
+                        }
 
                         log(snapshot.data.toString());
 
@@ -68,18 +69,17 @@ class RecentScreen extends StatelessWidget {
                                 DateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS")
                                     .parse(snapshot.data![index].date);
 
-// Format DateTime object to "dd-mm hh:mm AM/PM" format
                             String formattedDateString =
                                 DateFormat("h:mm a dd MMM").format(dateTime);
 
                             return ListTile(
                                 leading: CircleAvatar(
                                   backgroundColor: Colors.yellow,
+                                  radius: 20,
                                   child: Text(
                                     snapshot.data![index].name[0].toUpperCase(),
                                     style: const TextStyle(color: Colors.black),
                                   ),
-                                  radius: 20,
                                 ),
                                 title: Text(snapshot.data![index].name),
                                 subtitle: Text(snapshot.data![index].number),
@@ -91,7 +91,17 @@ class RecentScreen extends StatelessWidget {
                         );
                       }
                     } else {
-                      return const CupertinoActivityIndicator();
+                      return Column(
+                        children: [
+                          SizedBox(
+                            height: 300.h,
+                          ),
+                          const Text(
+                            "Something went wrong",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      );
                     }
                   })
             ],
@@ -99,9 +109,5 @@ class RecentScreen extends StatelessWidget {
         ),
       )),
     );
-  }
-
-  void sortListDescending(List<ContactModel> list, String key) {
-    list.sort((a, b) => b.toJson()[key].compareTo(a.toJson()[key]));
   }
 }

@@ -11,10 +11,8 @@ import 'package:phone_dialer/utils/sizes.dart';
 class SearchContact extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
-    // Called when the user taps the back button on the search bar
-    // Return a widget that will go back to the previous screen
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
       onPressed: () => Navigator.of(context).pop(),
     );
   }
@@ -28,18 +26,20 @@ class SearchContact extends SearchDelegate {
           return const CircularProgressIndicator();
         } else if (snapshot.hasData) {
           if (snapshot.data!.isEmpty) {
-            return const Text(
-              "Please Add Contacts",
-              style: TextStyle(color: Colors.white),
+            return const Center(
+              child: Text(
+                "No contacts found",
+                style: TextStyle(fontSize: 20),
+              ),
             );
           } else {
             List<ContactModel> data = [];
-            snapshot.data!.forEach((element) {
+            for (var element in snapshot.data!) {
               if (element.name.toLowerCase().contains(query.toLowerCase()) ||
                   element.number.contains(query)) {
                 data.add(element);
               }
-            });
+            }
 
             log(snapshot.data.toString());
 
@@ -55,23 +55,6 @@ class SearchContact extends SearchDelegate {
                   ),
                   title: Text(data[index].name),
                   subtitle: Text(data[index].number),
-                  trailing: IconButton(
-                      onPressed: () async {
-                        Contact contact = Contact();
-                        try {
-                          await FlutterPhoneDirectCaller.callNumber(
-                              snapshot.data![index].number);
-
-                          Recent.addRecent(
-                              name: snapshot.data![index].name,
-                              number: snapshot.data![index].number,
-                              uid: snapshot.data![index].did.toString());
-                        } catch (e) {
-                          // handle the error
-                          log(e.toString());
-                        }
-                      },
-                      icon: const Icon(Icons.call)),
                 );
               },
               separatorBuilder: (context, index) => kHeight5,
@@ -86,16 +69,19 @@ class SearchContact extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return Container();
+    return const Center(
+      child: Text(
+        "Search you contacts here",
+        style: TextStyle(fontSize: 20),
+      ),
+    );
   }
 
   @override
   List<Widget> buildActions(BuildContext context) {
-    // Called when the user taps the search icon or clears the search bar
-    // Return a list of widgets that will perform actions on the search bar
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () => query = '',
       ),
     ];

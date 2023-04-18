@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:phone_dialer/models/recent_model.dart';
 
 class Recent {
@@ -70,12 +70,6 @@ class Recent {
           .then((value) => log("added use ${recentModel.toJson()}"))
           .catchError((error) => log("Failed to delete user: $error"));
     }
-
-    /* await recent
-        .doc(uid)
-        .update(recentModel.toJson())
-        .then((value) => log("added use ${recentModel.toJson()}"))
-        .catchError((error) => log("Failed to delete user: $error")); */
   }
 
   static deleteRecentwithContacts({required String uid}) async {

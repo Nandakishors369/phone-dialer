@@ -1,5 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:developer';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,7 +30,7 @@ class ContactScreen extends StatelessWidget {
             nameController.clear();
             phoneController.clear();
           },
-          child: const Icon(Icons.people_alt),
+          child: const Icon(Icons.person_add),
         ),
         body: SafeArea(
           child: Padding(
@@ -41,7 +43,7 @@ class ContactScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           "Contacts",
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.w600),
@@ -51,7 +53,7 @@ class ContactScreen extends StatelessWidget {
                               showSearch(
                                   context: context, delegate: SearchContact());
                             },
-                            child: Icon(Icons.search))
+                            child: const Icon(Icons.search))
                       ],
                     ),
                   ),
@@ -94,7 +96,6 @@ class ContactScreen extends StatelessWidget {
                                   ),
                                   title: GestureDetector(
                                       onTap: () async {
-                                        Contact contact = Contact();
                                         try {
                                           await FlutterPhoneDirectCaller
                                               .callNumber(
@@ -184,7 +185,17 @@ class ContactScreen extends StatelessWidget {
                             );
                           }
                         } else {
-                          return const CupertinoActivityIndicator();
+                          return Column(
+                            children: [
+                              SizedBox(
+                                height: 300.h,
+                              ),
+                              const Text(
+                                "Something went wrong",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          );
                         }
                       })
                 ],

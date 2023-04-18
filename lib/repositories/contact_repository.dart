@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:phone_dialer/models/contact_model.dart';
-import 'package:phone_dialer/presentation/contacts_screen.dart';
 
 class Contact {
   static CollectionReference contacts =
@@ -10,7 +9,7 @@ class Contact {
 
   addContacts({required String name, required String number}) async {
     ContactModel contactModel =
-        ContactModel(name: name, number: "+91$number", recent: 0);
+        ContactModel(name: name, number: number, recent: 0);
     contactModel.toJson();
     await contacts
         .add(contactModel.toJson())

@@ -35,7 +35,7 @@ Future<dynamic> EditContactBottomSheet(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   kHeight15,
-                  const Text("Add Contact"),
+                  const Text("Edit Contact"),
                   kHeight10,
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -100,13 +100,12 @@ Future<dynamic> EditContactBottomSheet(
                   ElevatedButton(
                     onPressed: () async {
                       if (editformkey.currentState!.validate()) {
-                        Contact contact = Contact();
                         await Contact.editContact(
                             name: nameEditController.text,
                             number: phoneEditController.text,
                             docId: docId,
                             recent: recent);
-                        Recent.editContact(
+                        await Recent.editContact(
                             name: nameEditController.text,
                             number: phoneEditController.text,
                             uid: docId);
@@ -119,7 +118,7 @@ Future<dynamic> EditContactBottomSheet(
                                 content: Text("Please fill the details")));
                       }
                     },
-                    child: const Text("Add To Contacts"),
+                    child: const Text("Edit Contacts"),
                   ),
                   kHeight15
                 ],
